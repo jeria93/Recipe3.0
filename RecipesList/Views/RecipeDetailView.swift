@@ -32,11 +32,11 @@ struct RecipeDetailView: View {
                     .padding(.top, 5)
                     
                 
-                ForEach(recipes.ingredients, id: \.self) {
+                ForEach(recipes.ingredients) {
                     
                     item in
                     
-                    Text("- \(item)")
+                    Text("- \(item.name)")
                         
                                             
                 }
