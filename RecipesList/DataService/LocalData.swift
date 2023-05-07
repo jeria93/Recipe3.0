@@ -30,6 +30,7 @@ class Dataservice {
                 
                 let dataRecipe = try decoder.decode([Recipe].self, from: data)
                 
+                //Looping thru ID:S both in the same scope
                 for r in dataRecipe {
                     
                     //Adding unique ID for recipes
@@ -37,7 +38,9 @@ class Dataservice {
                     
                     //Adding unique ID for ingridients:
                     for i in r.ingredients {
+                        
                         i.id = UUID()
+                        
                     }
                     
                 }
