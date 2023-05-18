@@ -1,0 +1,21 @@
+
+
+
+
+
+"ingredients": [
+    
+    {"name": "Chicken broth",
+        "num": 6, "unit": "cup"},
+    {"name": "Olive oil", "num": 3, "unit": "tablespoon"},
+    {"name": "Portobello mushrooms", "num": 1, "unit": "pound"},
+    {"name": "White mushrooms", "num": 1, "unit": "pound"},
+    {"name": "Shallots, diced", "num": 2},
+    {"name": "Arborio rice", "num": 3, "denom": 2, "unit": "cup"},
+    {"name": "Dry white wine", "num": 1, "denom": 2, "unit": "cup"},
+    {"name": "Sea salt", "unit": "To taste"},
+    {"name": "Black pepper", "unit": "To taste"},
+    {"name": "Chives, finely chopped", "num": 3, "unit": "tablespoon"},
+    {"name": "Butter", "num": 4, "unit": "tablespoon"},
+    {"name": "Parmesan cheese", "num": 1, "denom": 3, "unit": "cup"}
+],

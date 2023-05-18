@@ -9,60 +9,88 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     
-    let recipes: Recipe
+    @State var selectedServingSize = 2
+    var recipes: Recipe
     
     var body: some View {
         
-
-            
+        
+        
         ScrollView {
-            
-            Image(recipes.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
             
             VStack(alignment: .leading) {
                 
-
+                Image(recipes.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                 
-                Text("Ingredients")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 5)
-                    .padding(.top, 5)
-                    
+                //MARK: Recipe Title
+                Text(recipes.name)
+                    .font(.largeTitle)
+                    .bold()
+                    .padding(.top, 20)
+                    .padding(.leading)
                 
-                ForEach(recipes.ingredients) {
+                //MARK: Serving Size Picker
+                VStack(alignment: .leading) {
                     
-                    item in
-                    
-                    Text("- \(item.name)")
+                    Text("Select your serving size:")
+                    Picker("Servings Picker", selection: $selectedServingSize) {
                         
-                                            
-                }
-                
-                Divider()
-                
-                Text("Directions")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .padding(.top, 3)
-                
-                ForEach(0..<recipes.directions.count, id: \.self) {
+                        Text("2").tag(2)
+                        Text("4").tag(4)
+                        Text("6").tag(6)
+                        Text("8").tag(8)
+                        
+                        
+                    }.pickerStyle(.segmented)
+                        .frame(width: 160)
                     
-                    index in
                     
-                    Text(String(index+1) + " . " + recipes.directions[index])
-                        .padding([.leading, .bottom, .trailing], 2)
+                }.padding()
+                
+                VStack(alignment: .leading) {
                     
-
-                }
-                
-              
-                
+                    
+                    //MARK: Ingredients
+                    Text("Ingredients")
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 5)
+                        .padding(.top, 5)
+                    
+                    
+                    ForEach(recipes.ingredients) {
+                        
+                        item in
+                        
+                        Text("- " + RecipeModel.getPortion(ingredient: item, recipeServings: recipes.servings, targetServings: selectedServingSize) + " " + item.name.lowercased())
+                        
+                        
+                    }
+                    
+                    Divider()
+                    
+                    Text("Directions")
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                        .padding(.top, 3)
+                    
+                    ForEach(0..<recipes.directions.count, id: \.self) {
+                        
+                        index in
+                        
+                        Text(String(index+1) + " . " + recipes.directions[index])
+                            .padding([.leading, .bottom, .trailing], 2)
+                        
+                        
+                    }
+                    
+                    
+                    
+                }.padding()
             }
-            .padding(.horizontal)
-        }.navigationBarTitle(recipes.name)
+        }
         
     }
 }
